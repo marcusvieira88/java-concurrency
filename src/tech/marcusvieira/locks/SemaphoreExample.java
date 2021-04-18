@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class SemaphoreExample {
 
@@ -20,7 +20,7 @@ public class SemaphoreExample {
                 permit = semaphore.tryAcquire(1, TimeUnit.SECONDS);
                 if (permit) {
                     System.out.println("Semaphore acquired");
-                    ConcurrentUtils.sleepThread(5);
+                    Utils.sleepThread(5);
                 } else {
                     System.out.println("Could not acquire semaphore");
                 }
@@ -36,6 +36,6 @@ public class SemaphoreExample {
         IntStream.range(0, 10)
             .forEach(i -> executor.submit(longRunningTask));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
     }
 }

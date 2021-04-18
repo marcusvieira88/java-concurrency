@@ -29,9 +29,9 @@ public class FutureCallableExample {
             System.out.println("Future is done=" + future.isDone());
 
 //            Result in TimeoutException because the task takes 2 Seconds to finish.
-//            String result = future.get(1, TimeUnit.SECONDS);
+            String result = future.get(1, TimeUnit.SECONDS);
 
-            String result = future.get();
+//            String result = future.get();
 
             System.out.println("Future done is done=" + future.isDone());
             System.out.print("result: " + result);

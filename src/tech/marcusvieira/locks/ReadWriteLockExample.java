@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class ReadWriteLockExample {
 
@@ -19,7 +19,7 @@ public class ReadWriteLockExample {
         executor.submit(() -> {
             lock.writeLock().lock();
             try {
-                ConcurrentUtils.sleepThread(2);
+                Utils.sleepThread(2);
                 map.put("key", "Data Changed");
                 System.out.println("Updated key");
             } finally {
@@ -31,7 +31,7 @@ public class ReadWriteLockExample {
             lock.readLock().lock();
             try {
                 System.out.println(map.get("key"));
-                ConcurrentUtils.sleepThread(1);
+                Utils.sleepThread(1);
             } finally {
                 lock.readLock().unlock();
             }
@@ -40,6 +40,6 @@ public class ReadWriteLockExample {
         executor.submit(readTask);
         executor.submit(readTask);
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
     }
 }

@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.LongAccumulator;
 import java.util.function.LongBinaryOperator;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class LongAccumulatorExample {
 
@@ -18,7 +18,7 @@ public class LongAccumulatorExample {
         IntStream.range(0, 10)
             .forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println(accumulator.getThenReset());
     }

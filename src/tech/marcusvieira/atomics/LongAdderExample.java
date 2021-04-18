@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class LongAdderExample {
 
@@ -20,7 +20,7 @@ public class LongAdderExample {
         IntStream.range(0, 1000)
             .forEach(i -> executor.submit(adder::increment));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println(adder.sumThenReset());
     }

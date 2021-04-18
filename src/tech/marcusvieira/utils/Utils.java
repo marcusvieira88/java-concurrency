@@ -3,7 +3,7 @@ package tech.marcusvieira.utils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ConcurrentUtils {
+public class Utils {
 
     /**
      * Stops the executor and wait all executor tasks finishes, if has a problem in the termination the non-finished

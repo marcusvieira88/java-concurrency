@@ -9,7 +9,16 @@ public class ScheduledExecutorAtFixedRateExample {
     public static void main(String[] args) {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-        Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
+//        Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
+
+        Runnable task = () -> {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+                System.out.println("Scheduling: " + System.nanoTime());
+            } catch (InterruptedException e) {
+                System.err.println("task interrupted");
+            }
+        };
 
         int initialDelay = 0;
         int period = 1;

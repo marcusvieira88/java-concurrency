@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class WrapperSynchronizationExample {
 
@@ -25,7 +25,7 @@ public class WrapperSynchronizationExample {
         long endTime = System.currentTimeMillis();
         System.out.println("Execution Wrapper time="+ (endTime - initTime));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         ExecutorService executor2 = Executors.newFixedThreadPool(2);
 
@@ -39,6 +39,6 @@ public class WrapperSynchronizationExample {
         long endTime2 = System.currentTimeMillis();
         System.out.println("Execution Concurrent time="+ (endTime2 - initTime2));
 
-        ConcurrentUtils.stopExecutor(executor2);
+        Utils.stopExecutor(executor2);
     }
 }

@@ -10,7 +10,7 @@ public class ScheduledExecutorExample {
     public static void main(String[] args) {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         try {
-            Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
+            Runnable task = () -> System.out.println(" Scheduling: " + System.nanoTime());
             ScheduledFuture<?> future = executor.schedule(task, 5, TimeUnit.SECONDS);
 
             long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);

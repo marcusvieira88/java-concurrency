@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.StampedLock;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class StampedLockExample {
 
@@ -18,7 +18,7 @@ public class StampedLockExample {
         executor.submit(() -> {
             long stamp = lock.writeLock();
             try {
-                ConcurrentUtils.sleepThread(1);
+                Utils.sleepThread(1);
                 map.put("key", "Data Changed!");
                 System.out.println("Updated key");
             } finally {
@@ -30,7 +30,7 @@ public class StampedLockExample {
             long stamp = lock.readLock();
             try {
                 System.out.println(map.get("key"));
-                ConcurrentUtils.sleepThread(1);
+                Utils.sleepThread(1);
             } finally {
                 lock.unlockRead(stamp);
             }
@@ -39,6 +39,6 @@ public class StampedLockExample {
         executor.submit(readTask);
         executor.submit(readTask);
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
     }
 }

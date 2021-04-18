@@ -3,7 +3,7 @@ package tech.marcusvieira.synchronization;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class SynchronizationExample {
 
@@ -25,7 +25,7 @@ public class SynchronizationExample {
         IntStream.range(0, NUM_INCREMENTS)
             .forEach(i -> executor.submit(SynchronizationExample::incrementSync));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println("   Sync: " + syncCount);
     }
@@ -38,7 +38,7 @@ public class SynchronizationExample {
         IntStream.range(0, NUM_INCREMENTS)
             .forEach(i -> executor.submit(SynchronizationExample::increment));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println("NonSync: " + nonSyncCount);
     }

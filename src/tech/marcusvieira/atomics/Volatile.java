@@ -3,7 +3,7 @@ package tech.marcusvieira.atomics;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class Volatile {
 
@@ -19,7 +19,7 @@ public class Volatile {
                 volatileInt++;
             }));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println(volatileInt);
     }

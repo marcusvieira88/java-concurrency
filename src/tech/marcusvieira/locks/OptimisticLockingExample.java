@@ -3,7 +3,7 @@ package tech.marcusvieira.locks;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.StampedLock;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class OptimisticLockingExample {
 
@@ -16,11 +16,11 @@ public class OptimisticLockingExample {
         executor.submit(() -> {
             long stamp = lock.tryOptimisticRead();
             try {
-                System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
-                ConcurrentUtils.sleepThread(1);
-                System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
-                ConcurrentUtils.sleepThread(2);
-                System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
+                System.out.println("Optimistic Lock Valid 1: " + lock.validate(stamp));
+                Utils.sleepThread(1);
+                System.out.println("Optimistic Lock Valid 2: " + lock.validate(stamp));
+                Utils.sleepThread(2);
+                System.out.println("Optimistic Lock Valid 3: " + lock.validate(stamp));
             } finally {
                 lock.unlock(stamp);
             }
@@ -30,13 +30,13 @@ public class OptimisticLockingExample {
             long stamp = lock.writeLock();
             try {
                 System.out.println("Write Lock acquired");
-                ConcurrentUtils.sleepThread(2);
+                Utils.sleepThread(2);
             } finally {
                 lock.unlock(stamp);
                 System.out.println("Write done");
             }
         });
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
     }
 }

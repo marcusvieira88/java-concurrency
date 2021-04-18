@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
-import tech.marcusvieira.utils.ConcurrentUtils;
+import tech.marcusvieira.utils.Utils;
 
 public class AtomicIntegerExample {
 
@@ -16,7 +16,7 @@ public class AtomicIntegerExample {
         IntStream.range(0, 1000)
             .forEach(i -> executor.submit(atomicInt::incrementAndGet));
 
-        ConcurrentUtils.stopExecutor(executor);
+        Utils.stopExecutor(executor);
 
         System.out.println(atomicInt.get());
 
@@ -32,14 +32,14 @@ public class AtomicIntegerExample {
                 executor2.submit(task);
             });
 
-        ConcurrentUtils.stopExecutor(executor2);
+        Utils.stopExecutor(executor2);
 
         System.out.println(atomicInt2.get());
 
         //accumlate and get operation
         AtomicInteger atomicInt3 = new AtomicInteger(0);
 
-        ExecutorService executor3 = Executors.newFixedThreadPool(2);
+        ExecutorService executor3 = Executors.newFixedThreadPool(4);
 
         IntStream.range(0, 1000)
             .forEach(i -> {
@@ -48,7 +48,7 @@ public class AtomicIntegerExample {
                 executor3.submit(task);
             });
 
-        ConcurrentUtils.stopExecutor(executor3);
+        Utils.stopExecutor(executor3);
 
         System.out.println(atomicInt3.get());
     }
